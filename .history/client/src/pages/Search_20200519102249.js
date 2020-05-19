@@ -27,38 +27,29 @@ function Search(props) {
       pageCount,
       previewLink
     } = apiEntry.volumeInfo;
-    const id = apiEntry.id;
 
-    
-    console.log(id, authors, title, subtitle, categories,
+    console.log(authors, title, subtitle, categories,
       description, imageLinks, infoLink, maturityRating,
       pageCount, previewLink);
 
     return {
-      id: id,
       title: title,
       authors: authors,
       description: description,
-      // image: (imageLinks ? imageLinks.thumbnail : ""),
-      image: (imageLinks ? imageLinks.smallThumbnail : ""),
+      image: (imageLinks.thumbnail && ""),
+      // image: imageLinks.smallThumbnail,
       link: infoLink
     }
 
-  }
-
-  function handleClick(event) {
-    event.preventDefault();
-    console.log(event.target);
   }
 
   function bookImage(title, link) {
     if (link) {
       return (
         <img
-          alt={title} book cover
-          src={link}
+          alt="{title} book cover"
+          src="{link}"
           height="300"
-          style={{ float: "left", margin: "10px 20px" }}
         />
       )
     } else {
@@ -67,7 +58,6 @@ function Search(props) {
   }
 
   console.log(books);
-
   return (
       <Container fluid>
         <Row>
@@ -89,26 +79,18 @@ function Search(props) {
                     {
                       bookImage(book.title, book.image)
                     }
-                    <h2>
+                    <h1>
                       <a href={book.link} >
                         {book.title}
                       </a>
-                    </h2>
-                    <button 
-                      className="success"
-                      onClick={handleClick}
-                      id={book.id}
-                      style={{ float: "right", margin: "5px"}}
-                    >
-                      +
-                    </button>
+                    </h1>
                     <h3>by {book.authors.join(", ")}</h3>
                     <p>
                       {book.description}
                     </p>
                   </article>
                 </Col>
-              </Row> 
+              </Row>  
             )
           })
         }

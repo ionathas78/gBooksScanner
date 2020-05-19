@@ -29,7 +29,6 @@ function Search(props) {
     } = apiEntry.volumeInfo;
     const id = apiEntry.id;
 
-    
     console.log(id, authors, title, subtitle, categories,
       description, imageLinks, infoLink, maturityRating,
       pageCount, previewLink);
@@ -67,7 +66,6 @@ function Search(props) {
   }
 
   console.log(books);
-
   return (
       <Container fluid>
         <Row>
@@ -108,7 +106,7 @@ function Search(props) {
                     </p>
                   </article>
                 </Col>
-              </Row> 
+              </Row>  
             )
           })
         }

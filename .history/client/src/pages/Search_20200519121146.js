@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
+import BookItem from "../components/BookItem";
 import API from "../utils/API";
 
 function Search(props) {
@@ -13,38 +14,6 @@ function Search(props) {
       .then(res => setBooks(res.data.items))
       .catch(err => console.log(err));
   }, [])
-
-  function bookData(apiEntry) {
-    const { 
-      authors, 
-      title,
-      subtitle,
-      categories,  
-      description,
-      imageLinks,
-      infoLink,
-      maturityRating,
-      pageCount,
-      previewLink
-    } = apiEntry.volumeInfo;
-    const id = apiEntry.id;
-
-    
-    console.log(id, authors, title, subtitle, categories,
-      description, imageLinks, infoLink, maturityRating,
-      pageCount, previewLink);
-
-    return {
-      id: id,
-      title: title,
-      authors: authors,
-      description: description,
-      // image: (imageLinks ? imageLinks.thumbnail : ""),
-      image: (imageLinks ? imageLinks.smallThumbnail : ""),
-      link: infoLink
-    }
-
-  }
 
   function handleClick(event) {
     event.preventDefault();
@@ -67,7 +36,6 @@ function Search(props) {
   }
 
   console.log(books);
-
   return (
       <Container fluid>
         <Row>
@@ -81,7 +49,7 @@ function Search(props) {
         </Row>
         {
           books.map(entry => {
-            let book = bookData(entry);
+
             return (
               <Row>
                 <Col size="md-10 md-offset-1">

@@ -27,15 +27,12 @@ function Search(props) {
       pageCount,
       previewLink
     } = apiEntry.volumeInfo;
-    const id = apiEntry.id;
 
-    
-    console.log(id, authors, title, subtitle, categories,
+    console.log(authors, title, subtitle, categories,
       description, imageLinks, infoLink, maturityRating,
       pageCount, previewLink);
 
     return {
-      id: id,
       title: title,
       authors: authors,
       description: description,
@@ -67,7 +64,6 @@ function Search(props) {
   }
 
   console.log(books);
-
   return (
       <Container fluid>
         <Row>
@@ -97,7 +93,6 @@ function Search(props) {
                     <button 
                       className="success"
                       onClick={handleClick}
-                      id={book.id}
                       style={{ float: "right", margin: "5px"}}
                     >
                       +
@@ -108,7 +103,7 @@ function Search(props) {
                     </p>
                   </article>
                 </Col>
-              </Row> 
+              </Row>  
             )
           })
         }
