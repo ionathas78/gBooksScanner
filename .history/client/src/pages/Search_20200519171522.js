@@ -149,7 +149,7 @@ function Search(props) {
                       <button 
                         className="success"
                         onClick={handleClick}
-                        id={i}
+                        key={i}
                         style={{ float: "right", margin: "5px" }}
                       >
                         +
