@@ -1,5 +1,4 @@
 import axios from "axios";
-require("dotenv");
 
 export default {
   // Gets all books
@@ -20,10 +19,8 @@ export default {
   },
   searchBooks: function(searchTerm) {
     let queryString = "https://www.googleapis.com/books/v1/volumes?q=";
-    // let apiKey = "&key=" + process.env.API_KEY;
-    let apiKey = "&key=AIzaSyBwM7wSmJtrmNB64WSHYDrIvkjeauOQcto";
-    // console.log(process.env.API_KEY);
+    let apiKey = "&key=" + process.env.API_KEY;
 
-    return axios.get(queryString + searchTerm + apiKey);
+    return axios.get(querystring + searchTerm + apiKey);
   }
 };

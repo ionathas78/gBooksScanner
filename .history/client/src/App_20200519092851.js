@@ -5,11 +5,8 @@ import Detail from "./pages/Detail";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-const config = require("dotenv").config();
 
 function App() {
-  console.log(config);
-
   return (
     <Router>
       <div>
@@ -18,7 +15,7 @@ function App() {
           <Route exact path={["/", "/books"]}>
             <Books />
           </Route>
-          <Route exact path ="/search/:searchTerm">
+          <Route exact path ="/search">
             <Search />
           </Route>
           <Route exact path="/books/:id">
