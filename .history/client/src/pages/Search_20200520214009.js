@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { Media, MediaItem } from "../components/Media";
 import Jumbotron from "../components/Jumbotron";
 import SearchBar from "../components/SearchBar";
 import API from "../utils/API";
@@ -10,18 +9,10 @@ const KEY_ENTER = 13;
 
 function Search(props) {
   const [books, setBooks] = useState([]);
-  const [myBooks, setMyBooks] = useState([]);
   const [search, setSearch] = useState("");
   const { searchTerm } = useParams();
 
   useEffect(() => {
-    API.getBooks()
-      .then(res => {
-        // console.log(res);
-        setMyBooks(res.data);
-      })
-      .catch(err => console.log(err));
-
     if (!searchTerm) {
       return;
     } else {
@@ -33,35 +24,8 @@ function Search(props) {
       .catch(err => console.log(err));
   }, [])
 
-  function bookData(apiEntry) {
-    const { 
-      authors, 
-      title,
-      description,
-      imageLinks,
-      infoLink
-      // maturityRating,
-      // pageCount,
-      // previewLink,
-      // subtitle,
-      // categories
-    } = apiEntry.volumeInfo;
-    const id = apiEntry.id;
+  
     
-    // console.log(id, authors, title, subtitle, categories,
-    //   description, imageLinks, infoLink, maturityRating,
-    //   pageCount, previewLink);
-
-    return {
-      id: id,
-      title: title,
-      authors: authors,
-      description: description,
-      // image: (imageLinks ? imageLinks.thumbnail : ""),
-      image: (imageLinks ? imageLinks.smallThumbnail : ""),
-      link: infoLink
-    }
-  }
 
   function handleClick(event) {
     event.preventDefault();
@@ -69,12 +33,6 @@ function Search(props) {
     let bookToSave = bookData(books[event.target.id]);
     // console.log(bookToSave);
     API.saveBook(bookToSave);
-    API.getBooks()
-      .then(res => {
-        // console.log(res);
-        setMyBooks(res.data);
-      })
-      .catch(err => console.log(err));
   }
 
   function handleChange(event) {
@@ -119,7 +77,6 @@ function Search(props) {
 
   // console.log(books);
   let i = -1;
-  let j = -1;
   return (
       <Container fluid>
         <Row>
@@ -138,32 +95,11 @@ function Search(props) {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                Search Results: {search ? '\'' + search.trim() + '\'' : "..."}
+                Search Results: {search ? '\'' + search + '\'' : "..."}
               </h1>
             </Jumbotron>
           </Col>
         </Row>
-
-        <Row>
-          <Media
-            children={
-              myBooks.map(item => {
-                j++;
-                // console.log(j, item.image, item.title);
-                return (
-                  <MediaItem
-                    key={j}
-                    imageSrc={item.image}
-                    altText={item.title}
-                    link={item.link}
-                  />
-                )
-              })
-            }
-          >
-          </Media>
-        </Row>
-
         {
           ((!books || !books.length) ?
             <h1>No results</h1>
@@ -203,14 +139,44 @@ function Search(props) {
           )
         }
         <hr/>
-        {/* <Row>
+        <Row>
           <Col size="md-2">
             <Link to="/">← Back to Authors</Link>
           </Col>
-        </Row> */}
+        </Row>
       </Container>
     );
   }
 
+  function bookData(apiEntry) {
+    const { 
+      authors, 
+      title,
+      description,
+      imageLinks,
+      infoLink,
+      maturityRating,
+      pageCount,
+      previewLink,
+      subtitle,
+      categories
+    } = apiEntry.volumeInfo;
+    const id = apiEntry.id;
+    
+    return {
+      id: id,
+      title: title,
+      subtitle: subtitle,
+      authors: authors,
+      description: description,
+      image: (imageLinks ? imageLinks.thumbnail : ""),
+      smallImage: (imageLinks ? imageLinks.smallThumbnail : ""),
+      link: infoLink,
+      rating: maturityRating,
+      pageCount: pageCount,
+      preview: previewLink,
+      categories: categories
+    }
+  }
 
-export default Search;
+export default { Search, bookData };

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Nav({children}) {
   let i = -1;
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary flex-start">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       {children.map(item => {
         i++;
         return (

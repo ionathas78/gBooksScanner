@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Books from "./pages/Books";
-// import Detail from "./pages/Detail";
+import Detail from "./pages/Detail";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
@@ -16,8 +16,8 @@ function App() {
         <Nav
           children={[
             { name: "Books", path: "/"}, 
-            { name: "Search", path: "/search"}
-            // { name: "Detail", path: "/books"}
+            { name: "Search", path: "/search"},
+            { name: "Detail", path: "/books"}
           ]}
         />
         <Switch>

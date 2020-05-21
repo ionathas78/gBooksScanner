@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { Media, MediaItem } from "../components/Media";
 import Jumbotron from "../components/Jumbotron";
 import SearchBar from "../components/SearchBar";
 import API from "../utils/API";
+import Carousel from "../components/Carousel";
 
 const KEY_ENTER = 13;
 
@@ -15,13 +15,6 @@ function Search(props) {
   const { searchTerm } = useParams();
 
   useEffect(() => {
-    API.getBooks()
-      .then(res => {
-        // console.log(res);
-        setMyBooks(res.data);
-      })
-      .catch(err => console.log(err));
-
     if (!searchTerm) {
       return;
     } else {
@@ -69,12 +62,6 @@ function Search(props) {
     let bookToSave = bookData(books[event.target.id]);
     // console.log(bookToSave);
     API.saveBook(bookToSave);
-    API.getBooks()
-      .then(res => {
-        // console.log(res);
-        setMyBooks(res.data);
-      })
-      .catch(err => console.log(err));
   }
 
   function handleChange(event) {
@@ -119,7 +106,6 @@ function Search(props) {
 
   // console.log(books);
   let i = -1;
-  let j = -1;
   return (
       <Container fluid>
         <Row>
@@ -143,27 +129,17 @@ function Search(props) {
             </Jumbotron>
           </Col>
         </Row>
+        <Carousel
+          children={[
+            <CarouselItem
+              imageSrc=""
+              altText=""
+              isActive={true}
+            />
+          ]}
+        >
 
-        <Row>
-          <Media
-            children={
-              myBooks.map(item => {
-                j++;
-                // console.log(j, item.image, item.title);
-                return (
-                  <MediaItem
-                    key={j}
-                    imageSrc={item.image}
-                    altText={item.title}
-                    link={item.link}
-                  />
-                )
-              })
-            }
-          >
-          </Media>
-        </Row>
-
+        </Carousel>
         {
           ((!books || !books.length) ?
             <h1>No results</h1>

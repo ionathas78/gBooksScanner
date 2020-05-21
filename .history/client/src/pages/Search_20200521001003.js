@@ -68,8 +68,8 @@ function Search(props) {
 
     let bookToSave = bookData(books[event.target.id]);
     // console.log(bookToSave);
-    API.saveBook(bookToSave);
-    API.getBooks()
+    API.saveBook(bookToSave)
+      .getBooks()
       .then(res => {
         // console.log(res);
         setMyBooks(res.data);

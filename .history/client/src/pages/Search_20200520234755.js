@@ -69,12 +69,6 @@ function Search(props) {
     let bookToSave = bookData(books[event.target.id]);
     // console.log(bookToSave);
     API.saveBook(bookToSave);
-    API.getBooks()
-      .then(res => {
-        // console.log(res);
-        setMyBooks(res.data);
-      })
-      .catch(err => console.log(err));
   }
 
   function handleChange(event) {
@@ -143,27 +137,23 @@ function Search(props) {
             </Jumbotron>
           </Col>
         </Row>
+        <Media
+          children={
+            myBooks.map(item => {
+              j++;
+              console.log(j, item.image, item.title, !j);
+              return (
+                <MediaItem
+                  key={j}
+                  imageSrc={item.image}
+                  altText={item.title}
+                />
+              )
+            })
+          }
+        >
 
-        <Row>
-          <Media
-            children={
-              myBooks.map(item => {
-                j++;
-                // console.log(j, item.image, item.title);
-                return (
-                  <MediaItem
-                    key={j}
-                    imageSrc={item.image}
-                    altText={item.title}
-                    link={item.link}
-                  />
-                )
-              })
-            }
-          >
-          </Media>
-        </Row>
-
+        </Media>
         {
           ((!books || !books.length) ?
             <h1>No results</h1>

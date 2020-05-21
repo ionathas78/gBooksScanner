@@ -6,7 +6,7 @@ module.exports = {
     // console.log("Testing Testing 1 2 3?");
     db.Book
       .find(req.query)
-      .sort({ title: 1 })
+      .sort({ title: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

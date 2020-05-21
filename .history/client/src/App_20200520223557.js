@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Books from "./pages/Books";
-// import Detail from "./pages/Detail";
+import Detail from "./pages/Detail";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
@@ -21,7 +21,7 @@ function App() {
           ]}
         />
         <Switch>
-          <Route exact path={["/"]}>
+          <Route exact path={["/"]} style={{ margin: "10px"}}>
             <Books />
           </Route>
           <Route exact path={["/search", "/search/:searchTerm"]}>

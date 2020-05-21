@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { Media, MediaItem } from "../components/Media";
+import { Carousel, CarouselItem } from "../components/Carousel";
 import Jumbotron from "../components/Jumbotron";
 import SearchBar from "../components/SearchBar";
 import API from "../utils/API";
@@ -69,12 +69,6 @@ function Search(props) {
     let bookToSave = bookData(books[event.target.id]);
     // console.log(bookToSave);
     API.saveBook(bookToSave);
-    API.getBooks()
-      .then(res => {
-        // console.log(res);
-        setMyBooks(res.data);
-      })
-      .catch(err => console.log(err));
   }
 
   function handleChange(event) {
@@ -143,27 +137,24 @@ function Search(props) {
             </Jumbotron>
           </Col>
         </Row>
+        <Carousel
+          children={
+            myBooks.map(item => {
+              j++;
+              console.log(j, item.image, item.title, !j);
+              return (
+                <CarouselItem
+                  key={j}
+                  imageSrc={item.image}
+                  altText={item.title}
+                  isActive={!j}
+                />
+              )
+            })
+          }
+        >
 
-        <Row>
-          <Media
-            children={
-              myBooks.map(item => {
-                j++;
-                // console.log(j, item.image, item.title);
-                return (
-                  <MediaItem
-                    key={j}
-                    imageSrc={item.image}
-                    altText={item.title}
-                    link={item.link}
-                  />
-                )
-              })
-            }
-          >
-          </Media>
-        </Row>
-
+        </Carousel>
         {
           ((!books || !books.length) ?
             <h1>No results</h1>
