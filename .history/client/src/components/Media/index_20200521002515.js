@@ -11,7 +11,7 @@ export function Media({ children }) {
 
 export function MediaItem({key, imageSrc, altText, link}) {
   return (
-    <li className="media" key={key} style={{ margin: "0 10px" }}>
+    <li className="media" data-key={key} style={{ margin: "0 10px" }}>
       <a href={link} >
         <img src={imageSrc} className="mr-3" alt={altText} />
       </a>

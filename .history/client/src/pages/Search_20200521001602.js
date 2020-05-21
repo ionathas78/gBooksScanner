@@ -74,15 +74,13 @@ function Search(props) {
       .then(res => {
         // console.log(res);
         setMyBooks(res.data);
-
-        return (
-          <Alert
-            type="active"
-            message={"Added " + bookToSave.title}
-          />    
-        )
       })
       .catch(err => console.log(err));
+
+    <Alert
+      type="active"
+      message={"Added " + bookToSave.title}
+    />
   }
 
   function handleChange(event) {

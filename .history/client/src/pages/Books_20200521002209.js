@@ -46,7 +46,7 @@ function Books() {
                 // console.log(j, item.image, item.title);
                 return (
                   <MediaItem
-                    key={i}
+                    // key={i}
                     imageSrc={item.image}
                     altText={item.title}
                     link={item.link}
