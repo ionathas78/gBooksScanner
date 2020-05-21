@@ -132,7 +132,7 @@ function Search(props) {
   return (
       <Container fluid>
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-6 sm-12">
             <SearchBar 
               name="search"
               placeholder="Enter Search Term(s)"
@@ -144,7 +144,7 @@ function Search(props) {
           </Col>
         </Row>
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>
                 Search Results: {search ? '\'' + search.trim() + '\'' : "..."}
@@ -154,7 +154,7 @@ function Search(props) {
         </Row>
 
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-6 sm-12">
             <Media
               children={
                 myBooks.map(item => {

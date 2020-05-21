@@ -23,7 +23,7 @@ export default {
     let queryString = "https://www.googleapis.com/books/v1/volumes?q=";
     // let apiKey = "&key=" + process.env.API_KEY;
     // let apiKey = "&key=AIzaSyBwM7wSmJtrmNB64WSHYDrIvkjeauOQcto";
-    let apiKey="";
+    let apiKey=""
     // console.log(process.env.API_KEY);
 
     return axios.get(queryString + searchTerm + apiKey);

@@ -32,14 +32,14 @@ function Books() {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-6 sm-12">
             <Jumbotron>
               <h1>Saved for Later</h1>
             </Jumbotron>
           </Col>
         </Row>
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-6 sm-12">
             <Media
               children={
                 books.map(item => {
@@ -60,7 +60,7 @@ function Books() {
           </Col>
         </Row>
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-6 sm-12">
             {books.length ? (
               <List>
                 {books.map(book => (

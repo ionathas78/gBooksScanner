@@ -111,11 +111,10 @@ function Search(props) {
   }
 
   function bookImage(title, link) {
-    // console.log(link, title);
     if (link) {
       return (
         <img
-          alt={title + " book cover"}
+          alt={title} book cover
           src={link}
           height="300"
           style={{ float: "left", margin: "10px 20px" }}
@@ -132,7 +131,7 @@ function Search(props) {
   return (
       <Container fluid>
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-12">
             <SearchBar 
               name="search"
               placeholder="Enter Search Term(s)"
@@ -144,7 +143,7 @@ function Search(props) {
           </Col>
         </Row>
         <Row>
-          <Col size="md-9 sm-12">
+          <Col size="md-12">
             <Jumbotron>
               <h1>
                 Search Results: {search ? '\'' + search.trim() + '\'' : "..."}
@@ -154,25 +153,23 @@ function Search(props) {
         </Row>
 
         <Row>
-          <Col size="md-9 sm-12">
-            <Media
-              children={
-                myBooks.map(item => {
-                  j++;
-                  // console.log(j, item.image, item.title);
-                  return (
-                    <MediaItem
-                      key={j}
-                      imageSrc={item.image}
-                      altText={item.title}
-                      link={item.link}
-                    />
-                  )
-                })
-              }
-            >
-            </Media>
-          </Col>
+          <Media
+            children={
+              myBooks.map(item => {
+                j++;
+                // console.log(j, item.image, item.title);
+                return (
+                  <MediaItem
+                    key={j}
+                    imageSrc={item.image}
+                    altText={item.title}
+                    link={item.link}
+                  />
+                )
+              })
+            }
+          >
+          </Media>
         </Row>
 
         {
@@ -182,7 +179,7 @@ function Search(props) {
             books.map(entry => {
               let book = bookData(entry);
               i++;
-              // console.log(book);
+              console.log(book);
               return (
                 <Row key={i}>
                   <Col size="md-10 md-offset-1">
